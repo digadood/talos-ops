@@ -16,3 +16,4 @@ resources:
   - ./rook-ceph.yaml
   - ./external-secrets.yaml
   - ./chart-authentik.yaml
+  - ./cloudnative-pg.yaml
