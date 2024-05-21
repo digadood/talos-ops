@@ -114,28 +114,26 @@ spec:
             runAsGroup: 999
             fsGroup: 999
             fsGroupChangePolicy: OnRootMismatch
-    ingress:
-      main:
-        enabled: true
-        className: internal
-        hosts:
-          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                service:
-                  name: main
-                  port: http
-        tls:
-          - hosts:
-              - *host
-    persistence:
-      config:
-        enabled: true
-        type: emptyDir
-        globalMounts:
-          - path: *configDir
     service:
-      main:
+      app:
+        controller: onepassword-connect
         ports:
           http:
             port: *apiPort
+    ingress:
+      app:
+        className: internal
+        hosts:
+          - host: &host "{{ .Release.Name }}.${SECRET_PUBLIC_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts: [*host]
+    persistence:
+      config:
+        type: emptyDir
+        globalMounts:
+          - path: *configDir
