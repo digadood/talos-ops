@@ -26,8 +26,8 @@ nodes:
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
-          hardwareAddr: "00:23:24:*"
-        dhcp: true
+          hardwareAddr: "00:23:24:ad:06:b0"
+        dhcp: false
         addresses:
           - "192.168.3.164/24"
         mtu: 1500
@@ -43,8 +43,8 @@ nodes:
     controlPlane: false
     networkInterfaces:
       - deviceSelector:
-          hardwareAddr: "ec:8e:b5:*"
-        dhcp: true
+          hardwareAddr: "ec:8e:b5:75:fc:ed"
+        dhcp: false
         addresses:
           - "192.168.3.121/24"
         mtu: 1500
