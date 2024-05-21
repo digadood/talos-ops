@@ -28,16 +28,14 @@ nodes:
       - deviceSelector:
           hardwareAddr: "ec:8e:b5:75:fc:ed"
         dhcp: false
-        vlans:
-          - vlanId: 100
-            addresses:
-              - "192.168.3.121/24"
-            mtu: 1500
-            routes:
-              - network: 0.0.0.0/0
-                gateway: "192.168.3.1"
-            vip:
-              ip: "192.168.3.218"
+        addresses:
+          - "192.168.3.121/24"
+        mtu: 1500
+        routes:
+          - network: 0.0.0.0/0
+            gateway: "192.168.3.1"
+        vip:
+          ip: "192.168.3.218"
 
 patches:
   # Configure containerd
