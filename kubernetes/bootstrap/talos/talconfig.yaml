@@ -20,10 +20,27 @@ cniConfig:
 
 nodes:
   - hostname: "talos-0"
-    ipAddress: "192.168.3.121"
+    ipAddress: "192.168.3.164"
     installDisk: "/dev/sdb"
     talosImageURL: factory.talos.dev/installer/ed036d0640097a4e7af413ee089851a12963cd2e2e1715f8866d551d17c2ec62
     controlPlane: true
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "00:23:24:*"
+        dhcp: true
+        addresses:
+          - "192.168.3.164/24"
+        mtu: 1500
+        routes:
+          - network: 0.0.0.0/0
+            gateway: "192.168.3.1"
+        vip:
+          ip: "192.168.3.218"
+  - hostname: "talos-1"
+    ipAddress: "192.168.3.121"
+    installDisk: "/dev/sdb"
+    talosImageURL: factory.talos.dev/installer/ed036d0640097a4e7af413ee089851a12963cd2e2e1715f8866d551d17c2ec62
+    controlPlane: false
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "ec:8e:b5:*"
@@ -34,8 +51,6 @@ nodes:
         routes:
           - network: 0.0.0.0/0
             gateway: "192.168.3.1"
-        vip:
-          ip: "192.168.3.218"
 
 patches:
   # Configure containerd
